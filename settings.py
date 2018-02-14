@@ -28,6 +28,8 @@ MONGO_USERNAME = os.environ.get('MONGO_USERNAME', 'user')
 MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD', 'user')
 MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'evedemo')
 
+DATE_FORMAT = '%m-%d-%yT%H:%M:%SZ'
+
 X_DOMAINS = ('http://127.0.0.1:8081')
 X_HEADERS = ('content-type', 'if-match')
 
@@ -60,11 +62,11 @@ events = {
         'banner_url': {
             'type': 'string'
         },
-        'start': {
+        'starts': {
             'type': 'datetime'
         },
         'ends': {
-
+            'type': 'datetime'
         }
     }
 }
