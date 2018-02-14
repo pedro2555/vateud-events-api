@@ -28,7 +28,7 @@ MONGO_USERNAME = os.environ.get('MONGO_USERNAME', 'user')
 MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD', 'user')
 MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'evedemo')
 
-X_DOMAINS = ('127.0.0.1:8081')
+X_DOMAINS = ('http://127.0.0.1:8081')
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
