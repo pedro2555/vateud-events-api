@@ -51,7 +51,7 @@ def pre_events_get_callback(request, lookup):
             continue
 
         events_collection.insert_one({
-            'vateud_id': event['vateud_id'],
+            'vateud_id': event['id'],
             'title': event['title'],
             'subtitle': event['subtitle'],
             'description': event['description'],
