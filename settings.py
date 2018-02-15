@@ -24,9 +24,9 @@ import os
 # Heroku, sensible DB connection settings are stored in environment variables.
 MONGO_HOST = os.environ.get('MONGO_HOST', 'localhost')
 MONGO_PORT = os.environ.get('MONGO_PORT', 27017)
-MONGO_USERNAME = os.environ.get('MONGO_USERNAME', 'user')
-MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD', 'user')
-MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'evedemo')
+MONGO_USERNAME = os.environ.get('MONGO_USERNAME', '')
+MONGO_PASSWORD = os.environ.get('MONGO_PASSWORD', '')
+MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'vateud-events')
 
 DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 
@@ -50,6 +50,12 @@ CACHE_EXPIRES = 20
 events = {
     'item_title': 'event',
     'schema': {
+        # this is just used for definitely avoid duplicated records
+        # and quite a nice way to keep track of things overall
+        'vateud_id': {
+            'type': 'integer',
+            'unique': True
+        },
         'title': {
             'type': 'string'
         },
