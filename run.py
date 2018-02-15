@@ -20,6 +20,7 @@ from eve import Eve
 
 import requests
 import json
+import datetime
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -50,7 +51,10 @@ def pre_events_get_callback(request, lookup):
         if events_collection.find_one({'vateud_id': event['id']}):
             continue
 
+        now = datetime.datetime.now()
         events_collection.insert_one({
+            '_created': now,
+            '_updated': now,
             'vateud_id': event['id'],
             'title': event['title'],
             'subtitle': event['subtitle'],
