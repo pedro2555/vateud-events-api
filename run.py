@@ -20,7 +20,7 @@ from eve import Eve
 
 import requests
 import json
-import datetime
+from datetime import datetime
 
 # Heroku support: bind to PORT if defined, otherwise default to 5000.
 if 'PORT' in os.environ:
@@ -28,9 +28,11 @@ if 'PORT' in os.environ:
     # use '0.0.0.0' to ensure your REST API is reachable from all your
     # network (and not only your computer).
     host = '0.0.0.0'
+    debug = False
 else:
     port = 5000
     host = '127.0.0.1'
+    debug = True
 
 app = Eve()
 
@@ -51,7 +53,7 @@ def pre_events_get_callback(request, lookup):
         if events_collection.find_one({'vateud_id': event['id']}):
             continue
 
-        now = datetime.datetime.now()
+        now = datetime.now()
         events_collection.insert_one({
             '_created': now,
             '_updated': now,
@@ -61,11 +63,11 @@ def pre_events_get_callback(request, lookup):
             'description': event['description'],
             'airports': event['airports'].split(', '),
             'banner_url': event['banner_url'],
-            'starts': event['starts'],
-            'ends': event['ends']
+            'starts': datetime.strptime(event['starts'], app.config['DATE_FORMAT']),
+            'ends': datetime.strptime(event['ends'], app.config['DATE_FORMAT'])
         })
 
 app.on_pre_GET_events += pre_events_get_callback
 
 if __name__ == '__main__':
-    app.run(host=host, port=port)
+    app.run(host=host, port=port, debug=debug)
