@@ -30,7 +30,7 @@ MONGO_DBNAME = os.environ.get('MONGO_DBNAME', 'vateud-events')
 
 DATE_FORMAT = '%Y-%m-%dT%H:%M:%SZ'
 
-X_DOMAINS = ('http://127.0.0.1:8081', 'https://vateud-events.herokuapp.com')
+X_DOMAINS = ('http://127.0.0.1:8081', 'https://vateud-events.herokuapp.com', 'https://fsn-app.herokuapp.com')
 X_HEADERS = ('content-type', 'if-match')
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
